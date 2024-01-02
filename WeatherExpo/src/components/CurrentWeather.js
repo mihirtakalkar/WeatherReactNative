@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, SafeAreaView, StyleSheet } from "react-native";
-import {Feather} from '@expo/vector-icons';
+import { Feather } from "@expo/vector-icons";
 
 const CurrentWeather = () => {
   return (

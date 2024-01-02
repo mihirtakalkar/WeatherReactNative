@@ -6,9 +6,12 @@ import {
   FlatList,
   View,
   StatusBar,
+  ImageBackground,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 import { Feather } from "@expo/vector-icons";
+
 
 const DATA = [
   {
@@ -56,7 +59,7 @@ const Item = (props) => {
       <Feather name={"sun"} size={50} color={"white"} />
       <Text style={styles.date}>{dt_text}</Text>
       <Text style={styles.temp}>{min}</Text>
-      <Text style = {styles.temp}>{max}</Text>
+      <Text style={styles.temp}>{max}</Text>
     </View>
   );
 };
@@ -72,22 +75,28 @@ const UpcomingWeather = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Upcoming Weather</Text>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.dt_text}
-      />
-    </SafeAreaView>
+    <ImageBackground
+      source={require("../../assets/clouds.jpg")}
+      style={styles.image}
+    >
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.title}>Upcoming Weather</Text>
+        <FlatList
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.dt_text}
+        />
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-    backgroundColor: "red",
+
+    //marginTop: StatusBar.currentHeight || 0,
+    backgroundColor: "transparent",
   },
   item: {
     padding: 20,
@@ -101,12 +110,20 @@ const styles = StyleSheet.create({
   },
   temp: {
     color: "white",
-    fontSize: 20
+    fontSize: 20,
+  },
+  title: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 44,
   },
   date: {
     color: "white",
-    fontSize: 15
-  }
+    fontSize: 15,
+  },
+  image: {
+    flex: 1,
+  },
 });
 
 export default UpcomingWeather;
